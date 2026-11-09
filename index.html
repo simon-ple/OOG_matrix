@@ -10,7 +10,15 @@
             background-color: #f6f5ee; 
             font-family: sans-serif; 
             margin: 0; 
-            padding: 12px; 
+            /* Removed body padding to maximize sidebar space */
+        }
+        /* The scaler container forces a 40% reduction */
+        .scaler-wrapper {
+            transform: scale(0.6);
+            transform-origin: top left;
+            /* Compensate for the scale so it takes up the right amount of width */
+            width: 166.66%; 
+            padding: 12px;
         }
         .matrix-box { 
             border: 2px solid #5d1a2f; 
@@ -50,60 +58,62 @@
     </style>
 </head>
 <body>
-    <div class="max-w-md mx-auto">
-        <div class="flex justify-between items-center mb-4">
-            <h2 class="text-base font-bold text-[#0f1b29]">Returns outside 6-month guarantee</h2>
-            <button onclick="resetAll()" class="text-xs border border-gray-300 p-1.5 rounded hover:bg-gray-100 flex items-center gap-1 bg-white">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
-                Reset
-            </button>
-        </div>
+    <div class="scaler-wrapper">
+        <div class="max-w-md">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-base font-bold text-[#0f1b29]">Returns outside 6-month guarantee</h2>
+                <button onclick="resetAll()" class="text-xs border border-gray-300 p-1.5 rounded hover:bg-gray-100 flex items-center gap-1 bg-white">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                    Reset
+                </button>
+            </div>
 
-        <!-- Loyal Customer Block -->
-        <div class="mb-6">
-            <h3 class="text-sm font-bold text-[#0f1b29]">Loyal Customer</h3>
-            <p class="text-xs text-gray-600 mb-2">Less than 15% returns and £1000+ sales</p>
-            <div class="matrix-box">
-                <p class="font-bold text-[#d97706] text-sm mb-3">Is the item under 2 years old?</p>
-                <div class="flex flex-col gap-3">
-                    <div class="flex gap-2">
-                        <button id="l-2y-yes" class="btn text-sm" onclick="selectOpt('l-2y', 'yes')">YES</button>
-                        <div id="res-l-2y-yes" class="result result-green hidden">Accept for EV or Exchange</div>
-                    </div>
-                    <div class="flex gap-2">
-                        <button id="l-2y-no" class="btn text-sm" onclick="selectOpt('l-2y', 'no')">NO</button>
-                        
-                        <!-- Nested Faulty Logic -->
-                        <div id="faulty-box" class="hidden flex-col gap-2 w-full border border-gray-200 rounded p-2 bg-gray-50 ml-1">
-                            <p class="font-bold text-[#d97706] text-xs">Is the item faulty?</p>
-                            <div class="flex gap-2">
-                                <button id="f-yes" class="btn text-xs py-1 px-2" onclick="selectOpt('f', 'yes')">YES</button>
-                                <div id="res-f-yes" class="result result-green hidden py-1">Accept for EV or Exchange</div>
-                            </div>
-                            <div class="flex gap-2">
-                                <button id="f-no" class="btn text-xs py-1 px-2" onclick="selectOpt('f', 'no')">NO</button>
-                                <div id="res-f-no" class="result result-red hidden py-1">Decline Return</div>
+            <!-- Loyal Customer Block -->
+            <div class="mb-6">
+                <h3 class="text-sm font-bold text-[#0f1b29]">Loyal Customer</h3>
+                <p class="text-xs text-gray-600 mb-2">Less than 15% returns and £1000+ sales</p>
+                <div class="matrix-box">
+                    <p class="font-bold text-[#d97706] text-sm mb-3">Is the item under 2 years old?</p>
+                    <div class="flex flex-col gap-3">
+                        <div class="flex gap-2">
+                            <button id="l-2y-yes" class="btn text-sm" onclick="selectOpt('l-2y', 'yes')">YES</button>
+                            <div id="res-l-2y-yes" class="result result-green hidden">Accept for EV or Exchange</div>
+                        </div>
+                        <div class="flex gap-2">
+                            <button id="l-2y-no" class="btn text-sm" onclick="selectOpt('l-2y', 'no')">NO</button>
+                            
+                            <!-- Nested Faulty Logic -->
+                            <div id="faulty-box" class="hidden flex-col gap-2 w-full border border-gray-200 rounded p-2 bg-gray-50 ml-1">
+                                <p class="font-bold text-[#d97706] text-xs">Is the item faulty?</p>
+                                <div class="flex gap-2">
+                                    <button id="f-yes" class="btn text-xs py-1 px-2" onclick="selectOpt('f', 'yes')">YES</button>
+                                    <div id="res-f-yes" class="result result-green hidden py-1">Accept for EV or Exchange</div>
+                                </div>
+                                <div class="flex gap-2">
+                                    <button id="f-no" class="btn text-xs py-1 px-2" onclick="selectOpt('f', 'no')">NO</button>
+                                    <div id="res-f-no" class="result result-red hidden py-1">Decline Return</div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Other Customer Block -->
-        <div>
-            <h3 class="text-sm font-bold text-[#0f1b29]">Other Customer</h3>
-            <p class="text-xs text-gray-600 mb-2">Does not meet Loyal Customer criteria</p>
-            <div class="matrix-box">
-                <p class="font-bold text-[#d97706] text-sm mb-3">Order under 1 year since purchase?</p>
-                <div class="flex flex-col gap-3">
-                    <div class="flex gap-2">
-                        <button id="o-1y-yes" class="btn text-sm" onclick="selectOpt('o-1y', 'yes')">YES</button>
-                        <div id="res-o-1y-yes" class="result result-green hidden">Accept for EV or Exchange</div>
-                    </div>
-                    <div class="flex gap-2">
-                        <button id="o-1y-no" class="btn text-sm" onclick="selectOpt('o-1y', 'no')">NO</button>
-                        <div id="res-o-1y-no" class="result result-red hidden">Decline Return</div>
+            <!-- Other Customer Block -->
+            <div>
+                <h3 class="text-sm font-bold text-[#0f1b29]">Other Customer</h3>
+                <p class="text-xs text-gray-600 mb-2">Does not meet Loyal Customer criteria</p>
+                <div class="matrix-box">
+                    <p class="font-bold text-[#d97706] text-sm mb-3">Order under 1 year since purchase?</p>
+                    <div class="flex flex-col gap-3">
+                        <div class="flex gap-2">
+                            <button id="o-1y-yes" class="btn text-sm" onclick="selectOpt('o-1y', 'yes')">YES</button>
+                            <div id="res-o-1y-yes" class="result result-green hidden">Accept for EV or Exchange</div>
+                        </div>
+                        <div class="flex gap-2">
+                            <button id="o-1y-no" class="btn text-sm" onclick="selectOpt('o-1y', 'no')">NO</button>
+                            <div id="res-o-1y-no" class="result result-red hidden">Decline Return</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -112,23 +122,19 @@
 
     <script>
         function selectOpt(group, val) {
-            // Reset current group buttons
             document.getElementById(`${group}-yes`).classList.remove('selected');
             document.getElementById(`${group}-no`).classList.remove('selected');
             document.getElementById(`res-${group}-yes`)?.classList.add('hidden');
             document.getElementById(`res-${group}-no`)?.classList.add('hidden');
             
-            // Highlight selected
             document.getElementById(`${group}-${val}`).classList.add('selected');
             
-            // Handle Loyal Customer > 2 Years Logic
             if (group === 'l-2y') {
                 const faultyBox = document.getElementById('faulty-box');
                 if (val === 'yes') {
                     document.getElementById('res-l-2y-yes').classList.remove('hidden');
                     faultyBox.classList.add('hidden');
                     faultyBox.classList.remove('flex');
-                    // Reset nested faulty selection if hidden
                     ['yes', 'no'].forEach(v => {
                         document.getElementById(`f-${v}`).classList.remove('selected');
                         document.getElementById(`res-f-${v}`)?.classList.add('hidden');
@@ -138,7 +144,6 @@
                     faultyBox.classList.add('flex');
                 }
             } else {
-                // Show standard result boxes
                 document.getElementById(`res-${group}-${val}`)?.classList.remove('hidden');
             }
         }
