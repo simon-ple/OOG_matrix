@@ -7,16 +7,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { 
-            background-color: #f6f5ee; 
+            background-color: white; /* Changed to white */
             font-family: sans-serif; 
             margin: 0; 
-            /* Removed body padding to maximize sidebar space */
         }
-        /* The scaler container forces a 40% reduction */
         .scaler-wrapper {
             transform: scale(0.6);
             transform-origin: top left;
-            /* Compensate for the scale so it takes up the right amount of width */
             width: 166.66%; 
             padding: 12px;
         }
@@ -100,7 +97,7 @@
             </div>
 
             <!-- Other Customer Block -->
-            <div>
+            <div class="mb-2">
                 <h3 class="text-sm font-bold text-[#0f1b29]">Other Customer</h3>
                 <p class="text-xs text-gray-600 mb-2">Does not meet Loyal Customer criteria</p>
                 <div class="matrix-box">
